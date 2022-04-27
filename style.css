@@ -1,0 +1,9 @@
+.root {
+}
+.domManiElement {
+    margin: 0 auto;
+    width: 50rem;
+    height: 50rem;
+    border: 1px solid #111;
+    background-color: #ededed;
+}
