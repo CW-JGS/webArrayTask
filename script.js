@@ -19,7 +19,7 @@ var namesTries = 5;
 var namesInputed = [];
 task1NameListSize.textContent = namesTries;
 
-task1Submit.addEventListener("click", (event) => {
+task1Submit.addEventListener("click", () => {
     // console.log(event);
     if(namesTries >0) {
         let data = getValue(task1Input);
@@ -42,7 +42,26 @@ task1Submit.addEventListener("click", (event) => {
 })
 
 // task 2 dom manipulation
-// const task2Run = qs(".task2Run");
-// task2NumArray = [34, 5, 67, 1, 99, 34, 44, 78, 34, 0];
+const task2Counter = qs(".task2Counter")
+const runT2 = qs(".runTask2")
+var hasBeenRun = false;
+var bucket = 0;
+task2NumArray = [34, 5, 67, 1, 99, 34, 44, 78, 34, 0];
+runT2.addEventListener("click", () => {
+    if(hasBeenRun) {
+        task2Counter.innerHTML = 0;
+        bucket = 0;
+        hasBeenRun = !hasBeenRun
+    } else {
+        for (let i =0; i<task2NumArray.length; i++) {
+            bucket += task2NumArray[i];
+        }
+        task2Counter.innerHTML = bucket;
+        hasBeenRun = !hasBeenRun
+    }
     
+        
+
+})
+
 
