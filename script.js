@@ -1,21 +1,19 @@
 function qs(element, parent=document) {
     return parent.querySelector(element);
 }
-function getValue(parent) {
+function getValue(element) {
     // console.log(parent.value)
-    return parent.value
+    return element.value
 }
 function cheekyArrayMethod(array, value) {
-    let occ = array.filter(val=>(val==value)).length
-    console.log(occ)
-    return occ
+    return array.filter(val=>(val==value)).length    
 }
 const task1 = qs(".task1");
 const task2 = qs(".task1");
 const task3 = qs(".task1");
 const task4 = qs(".task1");
 const task5 = qs(".task1");
-//task 1 dom manipulation
+//task 1 
 const task1NameListSize = qs(".nameListSize")
 const task1List = qs(".namesList");
 const task1Input = qs(".nameInput");
@@ -48,7 +46,7 @@ task1Submit.addEventListener("click", () => {
     } 
 })
 
-// task 2 dom manipulation
+// task 2
 const task2Counter = qs(".task2Counter")
 const runT2 = qs(".runTask2")
 var hasBeenRun = false;
@@ -67,7 +65,7 @@ runT2.addEventListener("click", () => {
         hasBeenRun = !hasBeenRun
     }
 })
-// task 3 Dom Manipulation
+// task 3
 var T3CounterMain = 6;
 const task3Counter = qs(".numbersLeft") || undefined
 const runT3 = qs(".runTask3") || undefined
@@ -98,7 +96,7 @@ runT3.addEventListener("click", ()=> {
     }
 })
 
-// task 4 logic and dom manipulation
+// task 4 
 var T4CounterMain = 6;
 const task4Counter = qs(".numbersLeftT4") || undefined
 const runT4 = qs(".runTask4") || undefined
@@ -127,3 +125,21 @@ runT4.addEventListener("click", ()=> {
     }
 })
 
+// task 5 
+const T5Input = qs(".textInputT5");
+const T5Run = qs(".task5Submit");
+const T5TextItem = qs(".textT5");
+const T5Text = [];
+
+T5Run.addEventListener("click", ()=> {
+    let data = getValue(T5Input);
+    if(data.toUpperCase() === "STOP") {
+        // I cannot be bothered writing my own algorithm to reverse an array when javascript has one built in 
+        let revArr = T5Text.reverse();
+        T5TextItem.textContent = revArr
+        T5Input.disabled = true;
+    } else {
+        T5Text.push(data)
+    }
+    T5Input.value = ""
+})
