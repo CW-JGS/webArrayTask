@@ -28,17 +28,19 @@ task1Submit.addEventListener("click", () => {
         task1Input.value = "";
         namesTries --;
         task1NameListSize.textContent = namesTries;
-    } else {
-        for(let i =0; i<namesInputed.length;i++) {
-            let task1ListItem = document.createElement('li');
-            task1ListItem.textContent = `hello ${namesInputed[i]}`;
-            try {
-                task1List.append(task1ListItem);
-            } catch (err) {
-                console.log(`error encountered ${err}`)
+        if(namesTries ==0) {
+            task1Input.disabled = true;
+            for(let i =0; i<namesInputed.length;i++) {
+                let task1ListItem = document.createElement('li');
+                task1ListItem.textContent = `hello ${namesInputed[i]}`;
+                try {
+                    task1List.append(task1ListItem);
+                } catch (err) {
+                    console.log(`error encountered ${err}`)
+                }
             }
         }
-    }
+    } 
 })
 
 // task 2 dom manipulation
@@ -59,9 +61,38 @@ runT2.addEventListener("click", () => {
         task2Counter.innerHTML = bucket;
         hasBeenRun = !hasBeenRun
     }
+})
+// task 3 Dom Manipulation
+var T3CounterMain = 6;
+const task3Counter = qs(".numbersLeft") || undefined
+const runT3 = qs(".runTask3") || undefined
+const task3Input = qs(".task3Input") || undefined
+const msgField = qs(".T3message")
+var numberArray = [] || undefined
+
+runT3.addEventListener("click", ()=> {  
+    if (T3CounterMain >0) {
+        let data = parseInt(getValue(task3Input))
+        if(isNaN(data)) {
+            alert("I see you are cheeky")
+        } else {
+            numberArray.push(parseInt(getValue(task3Input)))
+            T3CounterMain--;
+            task3Counter.innerHTML = T3CounterMain;
+        }
+        if (T3CounterMain ===0) {
+            task3Input.disabled = true
+            let popped = numberArray.pop();
+            if (numberArray.indexOf(popped) != -1) {
+                msgField.textContent = `${popped}  is a duplicated`
+            } else {
+                msgField.textContent = `${popped}  is not a duplicated`
+
+            }
+        }
+    }
     
-        
 
 })
 
-
+// task 4 logic and dom manipulation
