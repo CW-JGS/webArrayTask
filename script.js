@@ -5,6 +5,11 @@ function getValue(parent) {
     // console.log(parent.value)
     return parent.value
 }
+function cheekyArrayMethod(array, value) {
+    let occ = array.filter(val=>(val==value)).length
+    console.log(occ)
+    return occ
+}
 const task1 = qs(".task1");
 const task2 = qs(".task1");
 const task3 = qs(".task1");
@@ -76,7 +81,7 @@ runT3.addEventListener("click", ()=> {
         if(isNaN(data)) {
             alert("I see you are cheeky")
         } else {
-            numberArray.push(parseInt(getValue(task3Input)))
+            numberArray.push(data)
             T3CounterMain--;
             task3Counter.innerHTML = T3CounterMain;
         }
@@ -91,8 +96,34 @@ runT3.addEventListener("click", ()=> {
             }
         }
     }
-    
-
 })
 
 // task 4 logic and dom manipulation
+var T4CounterMain = 6;
+const task4Counter = qs(".numbersLeftT4") || undefined
+const runT4 = qs(".runTask4") || undefined
+const task4Input = qs(".task4Input") || undefined
+const newMsgField = qs(".T4message")
+var numbrArray = [];
+
+runT4.addEventListener("click", ()=> {  
+    if (T4CounterMain >0) {
+        let data = parseInt(getValue(task4Input))
+        if(isNaN(data)) {
+            alert("I see you, you are cheeky")
+        } else {
+            numbrArray.push(data)
+            T4CounterMain--;
+            task4Counter.innerHTML = T4CounterMain;
+        }
+        if (T4CounterMain ===0) {
+            task4Input.disabled = true
+            var popped = numbrArray.pop();
+            var numOccurences = cheekyArrayMethod(numbrArray, popped)
+            newMsgField.innerHTML = `${popped} occurs ${numOccurences} times`
+            
+        }
+        task4Input.value = "";
+    }
+})
+
